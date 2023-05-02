@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
-import renderWithRouter from './helpers/renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 describe('Testa o componente App', () => {
   it('verifica se os links de navegação da página são renderizados corretamente', () => {

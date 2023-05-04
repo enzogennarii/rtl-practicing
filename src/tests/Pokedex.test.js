@@ -40,9 +40,22 @@ describe('Testa o componente "Pokedex"', () => {
     expect(screen.getAllByTestId('pokemon-type-button')).toHaveLength(7);
   });
 
-  // it('verifica se ao clicar em um botão de filtro, são exibidos somente Pokémon do tipo clicado', () => {
-  //   renderWithRouter(<App />);
+  it('verifica se ao clicar em um botão de filtro, são exibidos somente Pokémon do tipo clicado, e se depois os filtros forem resetados, reinicia a lista', () => {
+    renderWithRouter(<App />);
 
+    const fireFilterBtn = screen.getByRole('button', { name: /fire/i });
+    userEvent.click(fireFilterBtn);
 
-  // });
+    screen.getByText(/charmander/i);
+
+    const btnNextPokemon = screen.getByRole('button', { name: 'Próximo Pokémon' });
+    userEvent.click(btnNextPokemon);
+
+    screen.getByText(/rapidash/i);
+
+    const cleanFilterBtn = screen.getByRole('button', { name: /all/i });
+    userEvent.click(cleanFilterBtn);
+
+    screen.getByText(/pikachu/i);
+  });
 });
